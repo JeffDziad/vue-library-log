@@ -1,0 +1,46 @@
+// app global css in SCSS form
+
+body {
+  background-image: url("src/assets/book-background.png");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+$container-padding: 20px;
+
+.container,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: $breakpoint-sm-min) {
+  .container,
+  .container-sm {
+    max-width: $breakpoint-xs - $container-padding;
+  }
+}
+
+@media (min-width: $breakpoint-md-min) {
+  .container,
+  .container-sm,
+  .container-md {
+    max-width: $breakpoint-sm - $container-padding;
+  }
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+}
+
+.border-primary {
+  border: $primary solid 4px;
+}
+
+.faded-wight-background {
+  background-color: rgba(255, 255, 255, 0.45);
+}
