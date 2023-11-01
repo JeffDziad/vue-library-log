@@ -21,7 +21,9 @@ function showModal() {
 </script>
 
 <template>
-  <q-btn @click="showModal" padding="70% md" size="xl" flat color="negative" icon="delete"></q-btn>
+  <slot name="button" :showModal="showModal">
+    <q-btn @click="showModal" padding="70% md" size="xl" flat color="negative" icon="delete"></q-btn>
+  </slot>
 
   <BasicModal ref="modal">
     <template #header>
@@ -31,7 +33,7 @@ function showModal() {
       </div>
     </template>
     <template #content>
-      <p class="text-subtitle1">Are you sure you would like to delete '{{title}}' from your library?</p>
+      <p class="text-subtitle1">Are you sure you would like to delete <span class="text-bold text-italic">"{{title}}"</span> from your library?</p>
     </template>
     <template #actions>
       <q-card-actions>

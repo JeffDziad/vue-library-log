@@ -6,6 +6,10 @@ const props = defineProps({
   tabNames: {
     type: Array,
     required: true
+  },
+  alignment: {
+    type: String,
+    default: "justify",
   }
 });
 
@@ -23,7 +27,7 @@ onMounted(() => {
     class="text-grey"
     active-color="primary"
     indicator-color="primary"
-    align="justify"
+    :align="alignment"
     narrow-indicator
   >
     <q-tab v-for="name in tabNames" :name="name" :key="name + '-tab'+ eid()">

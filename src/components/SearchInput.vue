@@ -1,19 +1,35 @@
 <script setup>
 import {inject, ref} from "vue";
 
+const props = defineProps({
+  label: {
+    type: String,
+    default: "Search",
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  searchFunc: {
+    type: Function,
+  }
+});
+
 const queryString = ref('');
 const loading = ref(false);
 const eid = inject('eid');
 
-function search() {
+async function search() {
   loading.value = true;
+  await props.searchFunc();
+  loading.value = false;
 }
 
 </script>
 
 <template>
   <form>
-    <q-input filled bg-color="white" v-model="queryString" label="Search">
+    <q-input :disable="disabled" filled bg-color="white" v-model="queryString" :label="label">
       <template #append>
         <q-btn @click="search" type="submit" :loading="loading" flat round color="primary" icon="search">
           <template #loading>

@@ -30,7 +30,7 @@ defineExpose({
 <template>
   <div>
   <q-dialog v-model="visible" @show="onShow" @hide="onHide">
-    <q-card class="modal-container">
+    <q-card class="modal-container" style="width: 500px; max-width: 80vw;">
       <q-card-section class="row items-center bg-primary text-white">
         <slot name="header"></slot>
         <q-space/>

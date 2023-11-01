@@ -1,14 +1,23 @@
 export default class GoogleBooksApi {
   static API_KEY = "AIzaSyCmTMIJ06qQ_q38lrLv1AhK7eOtiRIzIxY";
   static BASE = "https://www.googleapis.com/books/v1/volumes";
+  // static KEYWORDS = {
+  //   "intitle": "Title",
+  //   "inauthor": "Author",
+  //   "inpublisher": "Publisher",
+  //   "subject": "Description",
+  //   "isbn": "(ISBN) International Standard Book Number",
+  //   "lccn": "(LCCN) Library of Congress Control Number",
+  //   "oclc": "(OCLC) Online Computer Library Center",
+  // };
   static KEYWORDS = {
-    "intitle": "Title",
-    "inauthor": "Author",
-    "inpublisher": "Publisher",
-    "subject": "Description",
-    "isbn": "(ISBN) International Standard Book Number",
-    "lccn": "(LCCN) Library of Congress Control Number",
-    "oclc": "(OCLC) Online Computer Library Center",
+    "Title": "intitle",
+    "Author": "inauthor",
+    "Publisher": "inpublisher",
+    "Description": "subject",
+    "(ISBN) International Standard Book Number": "isbn",
+    "(LCCN) Library of Congress Control Number": "lccn",
+    "(OCLC) Online Computer Library Center": "oclc",
   };
 
   async getBooks(keyword, query) {
@@ -17,7 +26,7 @@ export default class GoogleBooksApi {
     return await res.json();
   }
   constructURL(keyword, query) {
-    return `${BookApi.BASE}?q=${keyword}:${query}&key=${BookApi.API_KEY}`;
+    return `${GoogleBooksApi.BASE}?q=${keyword}:${query}&key=${GoogleBooksApi.API_KEY}`;
   }
 }
 

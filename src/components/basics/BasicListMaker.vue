@@ -60,7 +60,7 @@ function addListItem() {
       </q-card-section>
 
       <q-card-actions class="q-ma-none bg-primary">
-        <q-input outlined dense bg-color="white" v-model="newListItem" :label="formattedItemLabel">
+        <q-input @keydown.enter.prevent="addListItem" class="full-width" outlined dense bg-color="white" v-model="newListItem" :label="formattedItemLabel">
           <template #append>
             <q-btn @click="addListItem" flat color="primary" icon="add"/>
           </template>

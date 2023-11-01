@@ -22,6 +22,7 @@
 
 <script>
 import { provide } from 'vue';
+import {Notify} from "quasar";
 
 function eid() {
   eid.count = eid.count ?? 1;
@@ -32,10 +33,38 @@ function removeDuplicatesFromArray(arr) {
   return [...new Set(arr)];
 }
 
+function showNotif(color, textColor, message, icon=null, multiLine=false) {
+  const random = Math.random() * 100
+
+  // const twoActions = random > 70
+  // const buttonColor = color ? 'white' : void 0
+
+  Notify.create({
+    color,
+    textColor,
+    icon: icon,
+    message,
+    position: 'top-right',
+    // avatar,
+    multiLine,
+    // actions: twoActions
+    //   ? [
+    //     { label: 'Reply', color: buttonColor, handler: () => { /* console.log('wooow') */ } },
+    //     { label: 'Dismiss', color: 'yellow', handler: () => { /* console.log('wooow') */ } }
+    //   ]
+    //   : (random > 40
+    //       ? [{ label: 'Reply', color: buttonColor, handler: () => { /* console.log('wooow') */ } }]
+    //       : null
+    //   ),
+    timeout: Math.random() * 5000 + 3000
+  })
+}
+
 export default {
   setup() {
     provide('eid', eid);
     provide('removeDuplicatesFromArray', removeDuplicatesFromArray);
+    provide('showNotif', showNotif);
   }
 }
 </script>

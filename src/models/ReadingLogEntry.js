@@ -1,4 +1,4 @@
-export default class LogEntry {
+export default class ReadingLogEntry {
   constructor(startTime) {
     this.inProgress = true;
     this.startTime = startTime;

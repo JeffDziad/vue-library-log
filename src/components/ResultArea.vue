@@ -1,11 +1,14 @@
 <script setup>
-import BookCard from "components/BookCard.vue";
+import {ref} from "vue";
+import LibraryItem from "components/LibraryItem.vue";
 
 const props = defineProps({
   items: {
     type: Array,
   }
 });
+
+const viewFormat = ref("list");
 </script>
 
 <template>
@@ -16,14 +19,14 @@ const props = defineProps({
     </div>
     <div class="col-6 flex justify-end">
       <q-btn-group push>
-        <q-btn color="primary" push label="List" icon="list" />
-        <q-btn color="primary" push label="Grid" icon="grid_view" />
+        <q-btn @click="viewFormat = 'list'" color="primary" push label="List" icon="list" />
+        <q-btn @click="viewFormat = 'grid'" color="primary" push label="Grid" icon="grid_view" />
       </q-btn-group>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12" v-for="b in items">
-      <BookCard :book="b"/>
+  <div class="row" :class="{'flex': viewFormat==='grid', 'justify-around': viewFormat==='grid'}">
+    <div :class="{'col-12': viewFormat==='list'}" v-for="(i) in items">
+      <LibraryItem :item="i" :view-format="viewFormat"></LibraryItem>
     </div>
   </div>
 </div>

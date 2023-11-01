@@ -1,6 +1,7 @@
 import ReadingLog from "src/models/ReadingLog";
 
 export default class Book {
+
   constructor(title = "",
               subtitle = "",
               authors = [],
@@ -11,6 +12,8 @@ export default class Book {
               pageCount = 0,
               categories = [],
               thumbnail = "",) {
+    this.type = "Book";
+
     this.title = title;
     this.subtitle = subtitle;
     this.authors = authors;

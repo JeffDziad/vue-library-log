@@ -1,14 +1,14 @@
 <script setup>
 import SearchOptionMenu from "components/SearchOptionMenu.vue";
 import SearchInput from "components/SearchInput.vue";
-import AddBookModal from "components/modals/AddBookModal.vue";
+import AddItemModal from "components/modal/add_item/AddItemModal.vue";
 
 const props = defineProps({
   allCategories: {
     type: Array,
     default: [],
   },
-  saveBookFunc: {
+  saveItem: {
     type: Function,
     required: true,
   }
@@ -26,7 +26,7 @@ const props = defineProps({
           </div>
           <div class="col flex justify-end">
             <!-- Add Button Here -->
-            <AddBookModal :all-categories="allCategories" :save-book-func="saveBookFunc"></AddBookModal>
+            <AddItemModal :all-categories="allCategories" :save-item="saveItem"></AddItemModal>
           </div>
         </div>
       </div>
