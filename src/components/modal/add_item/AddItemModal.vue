@@ -1,6 +1,11 @@
 <script setup>
 import BasicModal from "components/basics/BasicModal.vue";
+import BasicTabsWithContent from "components/basics/BasicTabsWithContent.vue";
 import {ref} from "vue";
+import Book from "src/models/Book";
+import BookForm from "components/book/form/BookForm.vue";
+import GoogleBookForm from "components/book/form/GoogleBookForm.vue";
+import AddBookForm from "components/book/AddBookForm.vue";
 
 const props = defineProps({
   allCategories: {
@@ -14,7 +19,6 @@ const props = defineProps({
 });
 
 let modal = ref(null);
-let addBookForm = ref(null);
 
 function showModal() {
   modal.value.show();
@@ -25,7 +29,7 @@ function hideModal() {
 }
 
 function onModalClose() {
-  addBookForm.reset();
+
 }
 
 function save(item) {
@@ -49,7 +53,7 @@ function save(item) {
 <!--  ADD TABS HERE FOR DIFFERENT TYPES OF LIBRARY ITEMS AddForms  -->
 <!--  AddBookForm should go in a book tab, the tab should probably just be a book icon -->
 
-      <AddBookForm ref="addBookForm" :save-item="save"></AddBookForm>
+      <AddBookForm :all-categories="allCategories" :save-item="save"></AddBookForm>
     </template>
   </BasicModal>
 </template>
