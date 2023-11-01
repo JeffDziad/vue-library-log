@@ -34,8 +34,7 @@ function removeDuplicatesFromArray(arr) {
 }
 
 function showNotif(color, textColor, message, icon=null, multiLine=false) {
-  const random = Math.random() * 100
-
+  // const random = Math.random() * 100
   // const twoActions = random > 70
   // const buttonColor = color ? 'white' : void 0
 

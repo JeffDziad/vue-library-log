@@ -1,6 +1,6 @@
 <script setup>
 import GoogleBooksApi from "src/api/GoogleBooksApi";
-import {computed, onMounted, ref} from "vue";
+import {computed, ref} from "vue";
 import SearchInput from "components/SearchInput.vue";
 import GoogleBookCard from "components/book/form/GoogleBookCard.vue";
 

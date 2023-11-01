@@ -1,11 +1,6 @@
 <script setup>
 import BasicModal from "components/basics/BasicModal.vue";
-import BasicTabsWithContent from "components/basics/BasicTabsWithContent.vue";
 import {ref} from "vue";
-import Book from "src/models/Book";
-import BookForm from "components/book/form/BookForm.vue";
-import GoogleBookForm from "components/book/form/GoogleBookForm.vue";
-import AddBookForm from "components/book/AddBookForm.vue";
 
 const props = defineProps({
   allCategories: {

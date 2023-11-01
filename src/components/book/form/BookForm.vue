@@ -1,6 +1,5 @@
 <script setup>
 import Book from "src/models/Book";
-import BasicListMaker from "components/basics/BasicListMaker.vue";
 import BasicCategoryPicker from "components/basics/BasicCategoryPicker.vue";
 import BasicAuthorPicker from "components/basics/BasicAuthorPicker.vue";
 import DatePickerInput from "components/basics/inputs/DatePickerInput.vue";

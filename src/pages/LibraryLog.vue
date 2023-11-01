@@ -29,7 +29,7 @@ function getFromLocalStorage(key, defaultValue={}) {
   else {
     setToLocalStorage(key, defaultValue);
     return defaultValue;
-  };
+  }
 }
 
 // function createBooks(objs) {
