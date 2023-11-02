@@ -7,19 +7,13 @@ import LibraryCollection from "../models/LibraryCollection";
 
 //* Variables
 const libraryCollection = ref(new LibraryCollection());
-
-// const ALL_BOOKS = ref([]);
 const ALL_CATEGORIES = ref([]);
 
 //* Hooks
 onMounted(() => {
-  // ALL_BOOKS.value = createBooks(getFromLocalStorage('books'));
   Object.assign(libraryCollection.value, getFromLocalStorage('libraryCollection', new LibraryCollection()));
   ALL_CATEGORIES.value = getFromLocalStorage('categories', ["Horror", "Fiction"]);
-  console.log(ALL_CATEGORIES.value);
 });
-
-//* Computed
 
 //* Functions
 const showNotif = inject('showNotif');
@@ -32,13 +26,6 @@ function getFromLocalStorage(key, defaultValue={}) {
     return defaultValue;
   }
 }
-
-// function createBooks(objs) {
-//   for(let i = 0; i < objs.length; i++) {
-//     objs[i] = Object.assign(new Book(), objs[i]);
-//   }
-//   return objs;
-// }
 
 function setToLocalStorage(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
@@ -61,28 +48,20 @@ function saveBook(book) {
     // Save book to variable and localstorage.
     libraryCollection.value.addItem(book);
     setToLocalStorage("libraryCollection", libraryCollection.value);
-    showNotif('green', 'white', "Added Book!", "check_circle");
-  } catch(e) {
+    showNotif('green', 'white', "Added Book!", "library_add");
+  } catch (e) {
     console.error(e);
     showNotif('red', 'white', "Failed to Add Book!", "error");
-  }
-}
-
-function deleteBook(book) {
-  try {
-    libraryCollection.value.removeItem(book);
-    setToLocalStorage('libraryCollection', libraryCollection.value);
-    showNotif('green', 'white', 'Deleted ' + book.title + "!", 'check_circle');
-  } catch (e) {
-    console.log(e);
-    showNotif('red', 'white', "Failed to Delete Book!", 'error');
   }
 }
 
 
 //! ---------------------------------------------------------------------------
 //! Look at notes for possible solution.
+//!   This all could be put in LibraryCollection as two functions, saveItem and deleteItem.
+//!   Which receives an item object and uses media's type to determine which array to delete from.
 function saveItem(item) {
+  //? Receiving Book, Movie
   let type = item.type;
 
   switch (type) {
@@ -97,18 +76,13 @@ function saveItem(item) {
 }
 
 function deleteItem(item) {
-  console.log(item);
-
-  let type = item.type;
-
-  switch (type) {
-    case "Book": {
-      deleteBook(item);
-      break;
-    }
-    default: {
-      showNotif("red", "white", "Item type not found: " + type, "error");
-    }
+  try {
+    libraryCollection.value.removeItem(item);
+    setToLocalStorage('libraryCollection', libraryCollection.value);
+    showNotif('green', 'white', 'Deleted ' + item.media.type + "!", 'delete');
+  } catch (e) {
+    console.log(e);
+    showNotif('red', 'white', "Failed to Delete Book!", 'error');
   }
 }
 //! ---------------------------------------------------------------------------

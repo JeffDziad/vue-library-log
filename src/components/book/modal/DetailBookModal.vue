@@ -21,6 +21,9 @@ function openModal() {
 </slot>
 
 <BasicFullScreenModal ref="modal">
+  <template #header>
+    <span class="text-subtitle1">{{book.title}}</span>
+  </template>
   <template #content>
     <div class="container">
 

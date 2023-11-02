@@ -1,4 +1,5 @@
-export default function LibraryItem(media){
+export default function LibraryItem(media, uuid=-1){
+  this.uuid = uuid;
   this.media = media;
 
   this.favorite = false;

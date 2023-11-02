@@ -9,13 +9,11 @@ defineOptions({
   name: "BookCard",
 });
 
+const emit = defineEmits(['delete']);
+
 const props = defineProps({
   item: {
     type: Object,
-  },
-  deleteItem: {
-    type: Function,
-    required: true,
   },
   viewFormat: {
     type: String,
@@ -38,7 +36,7 @@ const authors = computed(() => {
 <q-card class="q-mb-md">
   <q-card-section horizontal>
     <div class="thumbnail-wrapper">
-      <DetailBookModal>
+      <DetailBookModal :book="item">
         <template #button="{openModal}">
           <q-img class="col-5 thumbnail" :src="imageUrl" @click="openModal()">
             <q-badge color="info" floating rounded><q-icon size="sm" name="ads_click"/></q-badge>
@@ -60,7 +58,7 @@ const authors = computed(() => {
         <q-btn class="xs-hide" padding="70% md" size="xl" flat color="dark" icon="edit"></q-btn>
         <!--      <q-btn padding="70% md" size="xl" flat color="negative" icon="delete"></q-btn>-->
         <q-space/>
-        <DeleteBookModal :title="item.title" @confirmed="deleteItem(item)">
+        <DeleteBookModal :title="item.title" @confirmed="emit('delete')">
           <template #button="{showModal}">
             <q-btn @click="showModal" class="xs-hide" padding="70% md" size="xl" flat color="negative" icon="delete"></q-btn>
           </template>

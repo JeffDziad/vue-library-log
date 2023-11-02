@@ -38,7 +38,7 @@ function showModal() {
       <q-card-actions>
         <q-btn outline flat color="positive" v-close-popup>Cancel</q-btn>
         <q-space/>
-        <q-btn outline flat color="negative" @click="emit('confirmed')">Delete</q-btn>
+        <q-btn outline flat color="negative" @click="emit('confirmed')" v-close-popup>Delete</q-btn>
       </q-card-actions>
     </template>
   </BasicModal>

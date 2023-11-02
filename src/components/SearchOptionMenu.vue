@@ -26,7 +26,6 @@ const searchCategories = ref([]);
         <q-icon size="lg" name="tune"></q-icon>
       </span>
       <span class="text-h6">
-
         Search Options
       </span>
       <q-space></q-space>

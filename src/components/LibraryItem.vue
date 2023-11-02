@@ -27,7 +27,7 @@ const cardType = computed(() => {
 </script>
 
 <template>
-  <component :is="Comps[cardType]" :item="item.media" :view-format="viewFormat" :delete-item="deleteItem"/>
+  <component :is="Comps[cardType]" :item="item.media" :view-format="viewFormat" @delete="deleteItem(item)"/>
 </template>
 
 <style scoped>
