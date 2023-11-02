@@ -2,14 +2,13 @@
 import BasicModal from "components/basics/BasicModal.vue";
 import {ref} from "vue";
 
+const emit = defineEmits(['confirmed']);
+
 const props = defineProps({
   title:  {
     type: String,
     required: true,
-  },
-  deleteFunc: {
-    type: Function,
-  },
+  }
 });
 
 const modal = ref(null);
@@ -39,7 +38,7 @@ function showModal() {
       <q-card-actions>
         <q-btn outline flat color="positive" v-close-popup>Cancel</q-btn>
         <q-space/>
-        <q-btn outline flat color="negative">Delete</q-btn>
+        <q-btn outline flat color="negative" @click="emit('confirmed')">Delete</q-btn>
       </q-card-actions>
     </template>
   </BasicModal>

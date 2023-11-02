@@ -5,6 +5,10 @@ import LibraryItem from "components/LibraryItem.vue";
 const props = defineProps({
   items: {
     type: Array,
+  },
+  deleteItem: {
+    type: Function,
+    required: true,
   }
 });
 
@@ -19,14 +23,14 @@ const viewFormat = ref("list");
     </div>
     <div class="col-6 flex justify-end">
       <q-btn-group push>
-        <q-btn @click="viewFormat = 'list'" color="primary" push label="List" icon="list" />
-        <q-btn @click="viewFormat = 'grid'" color="primary" push label="Grid" icon="grid_view" />
+        <q-btn :disable="viewFormat==='list'" @click="viewFormat = 'list'" color="primary" push label="List" icon="list" />
+        <q-btn :disable="viewFormat==='grid'" @click="viewFormat = 'grid'" color="primary" push label="Grid" icon="grid_view" />
       </q-btn-group>
     </div>
   </div>
   <div class="row" :class="{'flex': viewFormat==='grid', 'justify-around': viewFormat==='grid'}">
     <div :class="{'col-12': viewFormat==='list'}" v-for="(i) in items">
-      <LibraryItem :item="i" :view-format="viewFormat"></LibraryItem>
+      <LibraryItem :item="i" :view-format="viewFormat" :delete-item="deleteItem"></LibraryItem>
     </div>
   </div>
 </div>

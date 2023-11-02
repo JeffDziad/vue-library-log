@@ -28,6 +28,7 @@ onMounted(() => {
     active-color="primary"
     indicator-color="primary"
     :align="alignment"
+    :breakpoint="0"
     narrow-indicator
   >
     <q-tab v-for="name in tabNames" :name="name" :key="name + '-tab'+ eid()">

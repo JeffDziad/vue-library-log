@@ -9,6 +9,14 @@ const props = defineProps({
     type: String,
     default: "List Maker",
   },
+  appendable: {
+    type: Boolean,
+    default: true,
+  },
+  caption: {
+    type: String,
+    default: "",
+  },
   itemLabel: {
     type: String,
     default: "Custom",
@@ -37,7 +45,7 @@ function addListItem() {
 </script>
 
 <template>
-  <q-expansion-item class="bg-primary" dark :icon="icon" :label="title" expand-separator>
+  <q-expansion-item class="bg-primary" dark :icon="icon" :label="title" :caption="caption" expand-separator>
     <q-card>
 
       <q-card-section class="q-pa-none">
@@ -59,7 +67,7 @@ function addListItem() {
         </q-list>
       </q-card-section>
 
-      <q-card-actions class="q-ma-none bg-primary">
+      <q-card-actions v-show="appendable" class="q-ma-none bg-primary">
         <q-input @keydown.enter.prevent="addListItem" class="full-width" outlined dense bg-color="white" v-model="newListItem" :label="formattedItemLabel">
           <template #append>
             <q-btn @click="addListItem" flat color="primary" icon="add"/>

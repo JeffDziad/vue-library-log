@@ -1,10 +1,15 @@
 <script setup>
 import BasicListMaker from "components/basics/BasicListMaker.vue";
+import {computed} from "vue";
 
 const props = defineProps({
   authors: {
     type: Array,
   },
+});
+
+const authorsString = computed(() => {
+  return props.authors.join(', ');
 });
 
 function addAuthor(auth) {
@@ -17,7 +22,7 @@ function removeAuthor(auth) {
 </script>
 
 <template>
-  <BasicListMaker title="Authors" icon="group" item-label="Author" :list="authors" @new-item="addAuthor">
+  <BasicListMaker title="Authors" icon="group" item-label="Author" :list="authors" @new-item="addAuthor" :caption="authorsString">
     <template #item="{item}">
       <q-item>
         <q-item-section>

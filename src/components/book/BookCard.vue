@@ -13,6 +13,10 @@ const props = defineProps({
   item: {
     type: Object,
   },
+  deleteItem: {
+    type: Function,
+    required: true,
+  },
   viewFormat: {
     type: String,
     required: true,
@@ -56,7 +60,7 @@ const authors = computed(() => {
         <q-btn class="xs-hide" padding="70% md" size="xl" flat color="dark" icon="edit"></q-btn>
         <!--      <q-btn padding="70% md" size="xl" flat color="negative" icon="delete"></q-btn>-->
         <q-space/>
-        <DeleteBookModal :title="item.title">
+        <DeleteBookModal :title="item.title" @confirmed="deleteItem(item)">
           <template #button="{showModal}">
             <q-btn @click="showModal" class="xs-hide" padding="70% md" size="xl" flat color="negative" icon="delete"></q-btn>
           </template>

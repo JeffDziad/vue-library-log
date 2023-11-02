@@ -32,7 +32,7 @@ const props = defineProps({
       </div>
 
       <div class="col-12">
-        <SearchOptionMenu></SearchOptionMenu>
+        <SearchOptionMenu :all-categories="allCategories"></SearchOptionMenu>
       </div>
 
     </div>

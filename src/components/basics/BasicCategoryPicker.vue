@@ -6,6 +6,10 @@ import BasicToggleQItem from "components/basics/BasicToggleQItem.vue";
 const removeDuplicatesFromArray = inject('removeDuplicatesFromArray');
 
 const props = defineProps({
+  appendable: {
+    type: Boolean,
+    default: true,
+  },
   allCategories: {
     type: Array,
     default: [],
@@ -20,6 +24,10 @@ const reduced = computed(() => {
   return removeDuplicatesFromArray(props.allCategories.concat(props.selectedCategories));
 });
 
+const categoriesString = computed(() => {
+  return props.selectedCategories.join(', ');
+});
+
 function addCategory(cat) {
   props.selectedCategories.push(cat);
 }
@@ -27,7 +35,7 @@ function addCategory(cat) {
 </script>
 
 <template>
-<BasicListMaker title="Categories" icon="category" :list="reduced" item-label="Category" @new-item="addCategory">
+<BasicListMaker title="Categories" icon="category" :list="reduced" item-label="Category" @new-item="addCategory" :caption="categoriesString" :appendable="appendable">
   <template #item="{ item }">
     <BasicToggleQItem :name="item" :selected="selectedCategories"></BasicToggleQItem>
   </template>

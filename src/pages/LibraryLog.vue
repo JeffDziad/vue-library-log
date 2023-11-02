@@ -16,6 +16,7 @@ onMounted(() => {
   // ALL_BOOKS.value = createBooks(getFromLocalStorage('books'));
   Object.assign(libraryCollection.value, getFromLocalStorage('libraryCollection', new LibraryCollection()));
   ALL_CATEGORIES.value = getFromLocalStorage('categories', ["Horror", "Fiction"]);
+  console.log(ALL_CATEGORIES.value);
 });
 
 //* Computed
@@ -68,11 +69,22 @@ function saveBook(book) {
 }
 
 function deleteBook(book) {
-
+  try {
+    libraryCollection.value.removeItem(book);
+    setToLocalStorage('libraryCollection', libraryCollection.value);
+    showNotif('green', 'white', 'Deleted ' + book.title + "!", 'check_circle');
+  } catch (e) {
+    console.log(e);
+    showNotif('red', 'white', "Failed to Delete Book!", 'error');
+  }
 }
 
+
+//! ---------------------------------------------------------------------------
+//! Look at notes for possible solution.
 function saveItem(item) {
-  let type = item.constructor.name;
+  let type = item.type;
+
   switch (type) {
     case "Book": {
       saveBook(item);
@@ -84,6 +96,22 @@ function saveItem(item) {
   }
 }
 
+function deleteItem(item) {
+  console.log(item);
+
+  let type = item.type;
+
+  switch (type) {
+    case "Book": {
+      deleteBook(item);
+      break;
+    }
+    default: {
+      showNotif("red", "white", "Item type not found: " + type, "error");
+    }
+  }
+}
+//! ---------------------------------------------------------------------------
 </script>
 
 <template>
@@ -94,7 +122,7 @@ function saveItem(item) {
       <Menu :all-categories="ALL_CATEGORIES" :save-item="saveItem"></Menu>
     </div>
     <div class="q-mt-md">
-      <ResultArea :items="libraryCollection.items"></ResultArea>
+      <ResultArea :items="libraryCollection.items" :delete-item="deleteItem"></ResultArea>
     </div>
   </div>
 

@@ -1,5 +1,6 @@
 <script setup>
 import {ref} from "vue";
+import BasicCategoryPicker from "components/basics/BasicCategoryPicker.vue";
 
 const props = defineProps({
   allCategories: {
@@ -9,6 +10,7 @@ const props = defineProps({
 });
 
 const expanded = ref(false);
+const searchCategories = ref([]);
 
 </script>
 
@@ -31,13 +33,14 @@ const expanded = ref(false);
     </template>
     <q-card>
       <q-card-section>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
-        commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
-        eveniet doloribus ullam aliquid.
+        <div class="row">
+          <div class="col-12 col-md-6">
 
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
-        commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
-        eveniet doloribus ullam aliquid.
+          </div>
+          <div class="col-12 col-md-6">
+            <BasicCategoryPicker :all-categories="allCategories" :selected-categories="searchCategories" :appendable="false"/>
+          </div>
+        </div>
       </q-card-section>
     </q-card>
   </q-expansion-item>

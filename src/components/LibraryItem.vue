@@ -10,6 +10,10 @@ const props = defineProps({
   item: {
     type: Object,
   },
+  deleteItem: {
+    type: Function,
+    required: true,
+  },
   viewFormat: {
     type: String,
     required: true,
@@ -23,10 +27,7 @@ const cardType = computed(() => {
 </script>
 
 <template>
-<!--  <BookCard :item="item.media"></BookCard>-->
-<!--  {{cardType}}-->
-
-  <component :is="Comps[cardType]" :item="item.media" :view-format="viewFormat"/>
+  <component :is="Comps[cardType]" :item="item.media" :view-format="viewFormat" :delete-item="deleteItem"/>
 </template>
 
 <style scoped>
