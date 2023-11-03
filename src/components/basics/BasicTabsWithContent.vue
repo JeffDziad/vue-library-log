@@ -15,8 +15,16 @@ const props = defineProps({
 
 const tab = ref(null);
 
+function setTab(tabName) {
+  tab.value = tabName;
+}
+
 onMounted(() => {
   tab.value = props.tabNames[0];
+});
+
+defineExpose({
+  setTab,
 });
 </script>
 

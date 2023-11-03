@@ -14,10 +14,27 @@ const props = defineProps({
   }
 });
 
+let tabs = ref(null);
 let book = ref(new Book());
 
 function saveBook() {
   props.saveItem(book.value);
+}
+
+function useBookFromAPI(b) {
+  let nb = new Book();
+  nb.title = b.volumeInfo.title;
+  nb.subtitle = b.volumeInfo.subtitle;
+  nb.isbn = b.volumeInfo.industryIdentifiers[0].identifier;
+  nb.authors = b.volumeInfo.authors;
+  nb.thumbnail = (b.volumeInfo.imageLinks.smallThumbnail) ? b.volumeInfo.imageLinks.smallThumbnail : null;
+  nb.pageCount = b.volumeInfo.pageCount;
+  nb.publisher = b.volumeInfo.publisher;
+  nb.description = b.volumeInfo.description;
+  nb.categories = b.volumeInfo.categories;
+  nb.publishedDate = b.volumeInfo.publishedDate.replaceAll("-", "/");
+  book.value = nb;
+  tabs.value.setTab("Manual");
 }
 
 function reset() {
@@ -30,7 +47,7 @@ defineExpose({
 </script>
 
 <template>
-  <BasicTabsWithContent :tab-names="['Manual', 'Search']">
+  <BasicTabsWithContent ref="tabs" :tab-names="['Manual', 'Search']">
     <template #Manual-tab>
       <span><q-icon name="edit_note" size="md"/>Manual</span>
     </template>
@@ -42,7 +59,7 @@ defineExpose({
       <BookForm :book="book" :all-categories="allCategories" @valid-submit="saveBook"/>
     </template>
     <template #Search-content>
-      <GoogleBookForm/>
+      <GoogleBookForm :use-book="useBookFromAPI"/>
     </template>
   </BasicTabsWithContent>
 </template>

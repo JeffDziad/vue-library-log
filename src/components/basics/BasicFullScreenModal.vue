@@ -23,8 +23,8 @@ defineExpose({
     persistent
     maximized
   >
-    <q-card class="text-white">
-      <q-bar class="q-py-lg bg-primary">
+    <q-card>
+      <q-bar class="q-py-lg bg-primary text-white">
         <slot name="header"/>
         <q-space />
         <q-btn round size="md" flat icon="close" v-close-popup></q-btn>

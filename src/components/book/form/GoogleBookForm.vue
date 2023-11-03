@@ -12,7 +12,6 @@ const props = defineProps({
   }
 });
 
-const queryString = ref("");
 const keyword = ref(null);
 const foundBooks = ref([]);
 
@@ -25,9 +24,9 @@ const searchLabel = computed(() => {
   return 'Search by ' + keyword.value;
 });
 
-async function search() {
+async function search(queryString) {
   // look for books
-  let f = await api.getBooks(GoogleBooksApi.KEYWORDS[keyword.value], queryString.value);
+  let f = await api.getBooks(GoogleBooksApi.KEYWORDS[keyword.value], queryString);
   foundBooks.value = f.items;
 }
 
@@ -38,7 +37,7 @@ async function search() {
   <SearchInput :disabled="keyword===null" :label="searchLabel" :search-func="search"></SearchInput>
   <hr>
   <div v-for="b in foundBooks" class="q-mt-md">
-    <GoogleBookCard :book="b"></GoogleBookCard>
+    <GoogleBookCard :book="b" :use-book="useBook"></GoogleBookCard>
   </div>
 </template>
 

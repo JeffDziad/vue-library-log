@@ -21,7 +21,7 @@ const eid = inject('eid');
 
 async function search() {
   loading.value = true;
-  await props.searchFunc();
+  await props.searchFunc(queryString.value);
   loading.value = false;
 }
 
