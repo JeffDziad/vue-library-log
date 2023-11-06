@@ -49,7 +49,7 @@ function addListItem() {
     <q-card>
 
       <q-card-section class="q-pa-none">
-        <q-list bordered separator>
+        <q-list bordered separator id="ListArea">
           <q-item v-if="list.length <= 0">
             <q-item-section>
               <span class="text-subtitle2">No {{title}}...</span>
@@ -64,6 +64,7 @@ function addListItem() {
               </q-item>
             </slot>
           </template>
+          <slot name="appendItem"></slot>
         </q-list>
       </q-card-section>
 
@@ -80,5 +81,8 @@ function addListItem() {
 </template>
 
 <style scoped>
-
+#ListArea {
+  overflow: scroll;
+  max-height: 250px;
+}
 </style>

@@ -6,6 +6,10 @@ const props = defineProps({
   items: {
     type: Array,
   },
+  allCategories: {
+    type: Array,
+    default: [],
+  },
   deleteItem: {
     type: Function,
     required: true,
@@ -38,7 +42,7 @@ const viewFormat = ref("list");
   </div>
   <div class="row" :class="{'flex': viewFormat==='grid', 'justify-around': viewFormat==='grid'}">
     <div :class="{'col-12': viewFormat==='list'}" v-for="(i) in items">
-      <LibraryItem :item="i" :view-format="viewFormat" :delete-item="deleteItem"></LibraryItem>
+      <LibraryItem :item="i" :all-categories="allCategories" :view-format="viewFormat" :delete-item="deleteItem"></LibraryItem>
     </div>
     <div v-if="items.length <= 0">
       <q-icon name="warning" size="xl"></q-icon>

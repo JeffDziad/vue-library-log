@@ -32,12 +32,22 @@ function addCategory(cat) {
   props.selectedCategories.push(cat);
 }
 
+function clearSelected() {
+  props.selectedCategories.splice(0, props.selectedCategories.length);
+}
+
 </script>
 
 <template>
 <BasicListMaker title="Categories" icon="category" :list="reduced" item-label="Category" @new-item="addCategory" :caption="categoriesString" :appendable="appendable">
   <template #item="{ item }">
     <BasicToggleQItem :name="item" :selected="selectedCategories"></BasicToggleQItem>
+  </template>
+  <template #appendItem>
+    <q-item clickable class="flex justify-center bg-grey-3" @click="clearSelected">
+      <q-icon name="clear_all" size="md"/>
+      <span class="text-subtitle1">&nbsp;Clear All</span>
+    </q-item>
   </template>
 </BasicListMaker>
 </template>

@@ -4,6 +4,7 @@ import {computed} from "vue";
 import BasicLabel from "components/basics/BasicLabel.vue";
 import DeleteBookModal from "components/book/modal/DeleteBookModal.vue";
 import DetailBookModal from "components/book/modal/DetailBookModal.vue";
+import EditBookModal from "components/book/modal/EditBookModal.vue";
 
 defineOptions({
   name: "BookCard",
@@ -14,6 +15,10 @@ const emit = defineEmits(['delete']);
 const props = defineProps({
   item: {
     type: Object,
+  },
+  allCategories: {
+    type: Array,
+    default: [],
   },
   viewFormat: {
     type: String,
@@ -55,8 +60,7 @@ const authors = computed(() => {
       </q-card-section>
       <q-space/>
       <q-card-actions vertical class="justify-between float-right q-gutter-none">
-        <q-btn class="xs-hide" padding="70% md" size="xl" flat color="dark" icon="edit"></q-btn>
-        <!--      <q-btn padding="70% md" size="xl" flat color="negative" icon="delete"></q-btn>-->
+        <EditBookModal :book="item" :all-categories="allCategories"/>
         <q-space/>
         <DeleteBookModal :title="item.title" @confirmed="emit('delete')">
           <template #button="{showModal}">
@@ -80,11 +84,10 @@ const authors = computed(() => {
 
 .thumbnail:hover {
   transform:scale(1.1);
-  -ms-transform:scale(1.1); /* IE 9 */
-  -moz-transform:scale(1.1); /* Firefox */
-  -webkit-transform:scale(1.1); /* Safari and Chrome */
-  -o-transform:scale(1.1); /* Opera */
-
+  -ms-transform:scale(1.1);
+  -moz-transform:scale(1.1);
+  -webkit-transform:scale(1.1);
+  -o-transform:scale(1.1);
   box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.75);
   -webkit-box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 15px -2px rgba(0,0,0,0.75);

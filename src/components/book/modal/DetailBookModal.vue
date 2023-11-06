@@ -2,6 +2,7 @@
 import BasicFullScreenModal from "components/basics/BasicFullScreenModal.vue";
 import {ref} from "vue";
 import BasicLabel from "components/basics/BasicLabel.vue";
+import BasicPillsArray from "components/basics/BasicPillsArray.vue";
 
 const props = defineProps({
   book: {
@@ -34,6 +35,7 @@ function openModal() {
         <div class="col-12 col-sm-6">
           <p class="text-h5 q-mb-none">{{book.title}}</p>
           <p v-if="book.subtitle" class="text-italic text-subtitle1 q-mb-md q-pl-sm">{{book.subtitle}}</p>
+          <hr>
           <BasicLabel v-if="book.authors.length > 0" label="Author(s)" icon="group">
             <p>{{book.authors.join(', ')}}</p>
           </BasicLabel>
@@ -47,7 +49,8 @@ function openModal() {
             <p>{{book.publishedDate}}</p>
           </BasicLabel>
           <BasicLabel v-if="book.categories.length>0" label="Categories" icon="category">
-            <p>{{book.categories.join(', ')}}</p>
+<!--            <p>{{book.categories.join(', ')}}</p>-->
+            <BasicPillsArray :pills="book.categories"></BasicPillsArray>
           </BasicLabel>
         </div>
       </div>

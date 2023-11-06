@@ -7,7 +7,7 @@ import {ref} from "vue";
 
 const props = defineProps({
   book: {
-    type: Book,
+    type: Object,
     required: true,
   },
   allCategories: {

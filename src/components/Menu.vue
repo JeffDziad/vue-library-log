@@ -11,8 +11,12 @@ const props = defineProps({
   saveItem: {
     type: Function,
     required: true,
+  },
+  search: {
+    type: Function,
   }
 });
+
 </script>
 
 <template>
@@ -22,7 +26,7 @@ const props = defineProps({
       <div class="col-12 q-mb-sm">
         <div class="row">
           <div class="col">
-            <SearchInput></SearchInput>
+            <SearchInput :search-func="search"></SearchInput>
           </div>
           <div class="col flex justify-end">
             <!-- Add Button Here -->

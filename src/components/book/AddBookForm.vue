@@ -25,6 +25,8 @@ function useBookFromAPI(b) {
   let nb = new Book();
   nb.title = b.volumeInfo.title;
   nb.subtitle = b.volumeInfo.subtitle;
+  //! Sometimes displays the isbn-10 instead of isbn-13. Look at all inside IndustryIdentifiers and use the largest number.
+  //! Or use the number with 13 char's.
   nb.isbn = b.volumeInfo.industryIdentifiers[0].identifier;
   nb.authors = b.volumeInfo.authors;
   nb.thumbnail = (b.volumeInfo.imageLinks.smallThumbnail) ? b.volumeInfo.imageLinks.smallThumbnail : null;
@@ -32,6 +34,7 @@ function useBookFromAPI(b) {
   nb.publisher = b.volumeInfo.publisher;
   nb.description = b.volumeInfo.description;
   nb.categories = b.volumeInfo.categories;
+  //! Sometimes doesn't work...
   nb.publishedDate = b.volumeInfo.publishedDate.replaceAll("-", "/");
   book.value = nb;
   tabs.value.setTab("Manual");

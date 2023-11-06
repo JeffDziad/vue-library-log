@@ -86,6 +86,10 @@ function deleteItem(item) {
   }
 }
 //! ---------------------------------------------------------------------------
+
+function search(query) {
+
+}
 </script>
 
 <template>
@@ -93,10 +97,10 @@ function deleteItem(item) {
 
   <div>
     <div class="q-mt-md">
-      <Menu :all-categories="ALL_CATEGORIES" :save-item="saveItem"></Menu>
+      <Menu :all-categories="ALL_CATEGORIES" :save-item="saveItem" :search="search"></Menu>
     </div>
     <div class="q-mt-md">
-      <ResultArea :items="libraryCollection.items" :delete-item="deleteItem"></ResultArea>
+      <ResultArea :items="libraryCollection.items" :all-categories="ALL_CATEGORIES" :delete-item="deleteItem"></ResultArea>
     </div>
   </div>
 

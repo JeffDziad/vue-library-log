@@ -26,6 +26,7 @@ const searchLabel = computed(() => {
 
 async function search(queryString) {
   // look for books
+  foundBooks.value = [];
   let f = await api.getBooks(GoogleBooksApi.KEYWORDS[keyword.value], queryString);
   foundBooks.value = f.items;
 }

@@ -59,11 +59,16 @@ function showNotif(color, textColor, message, icon=null, multiLine=false) {
   })
 }
 
+function randInRange(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
 export default {
   setup() {
     provide('eid', eid);
     provide('removeDuplicatesFromArray', removeDuplicatesFromArray);
     provide('showNotif', showNotif);
+    provide('randInRange', randInRange);
   }
 }
 </script>
