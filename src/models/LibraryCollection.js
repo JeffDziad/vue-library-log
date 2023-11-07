@@ -4,7 +4,6 @@ import {v4 as uuidv4} from 'uuid';
 export default function LibraryCollection() {
   this.items = [];
 
-
   this.addItem = function(item) {
     this.items.push(new LibraryItem(item, uuidv4()));
     return this;

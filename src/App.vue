@@ -5,7 +5,7 @@
       <q-toolbar class="text-white bg-dark">
         <q-toolbar-title class="text-center text-h3 q-py-lg">
           <q-icon name="auto_stories"></q-icon>
-          Library Log
+          <span style="vertical-align: baseline;">Library Log</span>
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -31,6 +31,10 @@ function eid() {
 
 function removeDuplicatesFromArray(arr) {
   return [...new Set(arr)];
+}
+
+function dupe(obj) {
+  return JSON.parse(JSON.stringify(obj));
 }
 
 function showNotif(color, textColor, message, icon=null, multiLine=false) {
@@ -69,6 +73,7 @@ export default {
     provide('removeDuplicatesFromArray', removeDuplicatesFromArray);
     provide('showNotif', showNotif);
     provide('randInRange', randInRange);
+    provide('dupe', dupe);
   }
 }
 </script>

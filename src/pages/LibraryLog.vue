@@ -47,7 +47,7 @@ function saveBook(book) {
     saveAndUpdateUniqueCategories(book.categories);
     // Save book to variable and localstorage.
     libraryCollection.value.addItem(book);
-    setToLocalStorage("libraryCollection", libraryCollection.value);
+    saveLibrary();
     showNotif('green', 'white', "Added Book!", "library_add");
   } catch (e) {
     console.error(e);
@@ -78,14 +78,30 @@ function saveItem(item) {
 function deleteItem(item) {
   try {
     libraryCollection.value.removeItem(item);
-    setToLocalStorage('libraryCollection', libraryCollection.value);
+    saveLibrary();
     showNotif('green', 'white', 'Deleted ' + item.media.type + "!", 'delete');
   } catch (e) {
     console.log(e);
     showNotif('red', 'white', "Failed to Delete Book!", 'error');
   }
 }
+
+function updateItem(item) {
+  try {
+    libraryCollection.value.updateItem(item);
+    saveLibrary();
+    showNotif('green', 'white', 'Updated ' + item.media.type + "!", "upgrade");
+  } catch (e) {
+    console.log(e);
+    showNotif('red', 'white', 'Failed to Update Book!', 'error');
+  }
+}
 //! ---------------------------------------------------------------------------
+
+function saveLibrary() {
+  console.log('update save');
+  setToLocalStorage('libraryCollection', libraryCollection.value);
+}
 
 function search(query) {
 
@@ -100,7 +116,7 @@ function search(query) {
       <Menu :all-categories="ALL_CATEGORIES" :save-item="saveItem" :search="search"></Menu>
     </div>
     <div class="q-mt-md">
-      <ResultArea :items="libraryCollection.items" :all-categories="ALL_CATEGORIES" :delete-item="deleteItem"></ResultArea>
+      <ResultArea :items="libraryCollection.items" :all-categories="ALL_CATEGORIES" :delete-item="deleteItem" @update="saveLibrary"></ResultArea>
     </div>
   </div>
 

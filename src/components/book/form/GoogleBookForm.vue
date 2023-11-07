@@ -36,7 +36,7 @@ async function search(queryString) {
 <template>
   <q-select class="q-mb-sm" filled v-model="keyword" :options="keys" label="Keyword" />
   <SearchInput :disabled="keyword===null" :label="searchLabel" :search-func="search"></SearchInput>
-  <hr>
+
   <div v-for="b in foundBooks" class="q-mt-md">
     <GoogleBookCard :book="b" :use-book="useBook"></GoogleBookCard>
   </div>

@@ -2,6 +2,7 @@
 import {ref} from "vue";
 import LibraryItem from "components/LibraryItem.vue";
 
+const emit = defineEmits(['update']);
 const props = defineProps({
   items: {
     type: Array,
@@ -21,6 +22,18 @@ const viewOptions = ref([
   {label: "List", value: "list", slot: "list"}
 ]);
 const viewFormat = ref("list");
+const lockViewFormat = ref(false);
+
+window.addEventListener('resize', (e) => {
+  if(innerWidth <= 600) {
+    viewFormat.value = "grid";
+    lockViewFormat.value = true;
+  }
+  else {
+    viewFormat.value = "list";
+    lockViewFormat.value = false;
+  }
+});
 </script>
 
 <template>
@@ -30,7 +43,7 @@ const viewFormat = ref("list");
       <span class="bg-primary text-white q-pa-sm text-subtitle1 rounded-borders">{{items.length}} Result(s)</span>
     </div>
     <div class="col-6 flex justify-end">
-      <q-btn-toggle v-model="viewFormat" color="white" text-color="black" toggle-color="primary" :options="viewOptions">
+      <q-btn-toggle :disable="lockViewFormat" v-model="viewFormat" color="white" text-color="black" toggle-color="primary" :options="viewOptions">
         <template #grid>
           <q-icon name="grid_view"></q-icon>
         </template>
@@ -42,7 +55,7 @@ const viewFormat = ref("list");
   </div>
   <div class="row" :class="{'flex': viewFormat==='grid', 'justify-around': viewFormat==='grid'}">
     <div :class="{'col-12': viewFormat==='list'}" v-for="(i) in items">
-      <LibraryItem :item="i" :all-categories="allCategories" :view-format="viewFormat" :delete-item="deleteItem"></LibraryItem>
+      <LibraryItem :item="i" :all-categories="allCategories" :view-format="viewFormat" :delete-item="deleteItem" @update="emit('update')"></LibraryItem>
     </div>
     <div v-if="items.length <= 0">
       <q-icon name="warning" size="xl"></q-icon>

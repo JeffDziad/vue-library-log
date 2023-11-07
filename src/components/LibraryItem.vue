@@ -6,6 +6,7 @@ const Comps = {
   "BookCard": BookCard,
 };
 
+const emit = defineEmits(['update']);
 const props = defineProps({
   item: {
     type: Object,
@@ -24,6 +25,11 @@ const props = defineProps({
   }
 });
 
+function update(i) {
+  Object.assign(props.item.media, i);
+  emit('update');
+}
+
 const cardType = computed(() => {
   return props.item.media.type + "Card";
 });
@@ -31,7 +37,7 @@ const cardType = computed(() => {
 </script>
 
 <template>
-  <component :is="Comps[cardType]" :item="item.media" :all-categories="allCategories" :view-format="viewFormat" @delete="deleteItem(item)"/>
+  <component :is="Comps[cardType]" :item="item.media" :all-categories="allCategories" :view-format="viewFormat" @delete="deleteItem(item)" @update="update"/>
 </template>
 
 <style scoped>

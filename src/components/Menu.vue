@@ -28,7 +28,7 @@ const props = defineProps({
           <div class="col">
             <SearchInput :search-func="search"></SearchInput>
           </div>
-          <div class="col flex justify-end">
+          <div class="col-xs-auto col-sm-6 flex justify-end q-ml-sm">
             <!-- Add Button Here -->
             <AddItemModal :all-categories="allCategories" :save-item="saveItem"></AddItemModal>
           </div>

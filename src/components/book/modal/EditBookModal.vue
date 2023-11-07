@@ -1,8 +1,11 @@
 <script setup>
 import BookForm from "components/book/form/BookForm.vue";
 import BasicModal from "components/basics/BasicModal.vue";
-import {ref} from "vue";
+import {inject, ref, watch} from "vue";
+import BasicEditButton from "components/basics/buttons/BasicEditButton.vue";
+const dupe = inject('dupe');
 
+const emit = defineEmits(['update']);
 const props = defineProps({
   book: {
     type: Object,
@@ -15,6 +18,7 @@ const props = defineProps({
 });
 
 const modal = ref(null);
+const editable = ref(dupe(props.book));
 
 function showModal() {
   modal.value.show();
@@ -22,20 +26,34 @@ function showModal() {
 
 function submit() {
   // props.book is ready to be saved.
+  emit('update', editable.value);
+  modal.value.hide();
 }
+
+watch(props.book, (n, o) => {
+  editable.value = dupe(n);
+});
+
+defineExpose({
+  showModal,
+});
+
 </script>
 
 <template>
   <slot name="button" :showModal="showModal">
-    <q-btn @click="showModal" class="xs-hide" padding="70% md" size="xl" flat color="dark" icon="edit"></q-btn>
+    <BasicEditButton :show-modal="showModal"/>
   </slot>
 
   <BasicModal ref="modal">
     <template #header>
-      Edit Book
+      <div class="text-h6">
+        <q-icon name="edit"/>
+        Edit Book
+      </div>
     </template>
     <template #content>
-      <BookForm :book="book" :all-categories="allCategories" @valid-submit="submit"></BookForm>
+      <BookForm :book="editable" :all-categories="allCategories" @valid-submit="submit"></BookForm>
     </template>
   </BasicModal>
 </template>

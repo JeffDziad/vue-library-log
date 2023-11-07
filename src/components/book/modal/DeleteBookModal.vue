@@ -1,6 +1,7 @@
 <script setup>
 import BasicModal from "components/basics/BasicModal.vue";
 import {ref} from "vue";
+import BasicDeleteButton from "components/basics/buttons/BasicDeleteButton.vue";
 
 const emit = defineEmits(['confirmed']);
 
@@ -17,11 +18,15 @@ function showModal() {
   modal.value.show();
 }
 
+defineExpose({
+  showModal,
+});
+
 </script>
 
 <template>
   <slot name="button" :showModal="showModal">
-    <q-btn @click="showModal" padding="70% md" size="xl" flat color="negative" icon="delete"></q-btn>
+    <BasicDeleteButton :show-modal="showModal"/>
   </slot>
 
   <BasicModal ref="modal">
