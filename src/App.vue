@@ -2,10 +2,11 @@
   <q-layout view="hHh lpR fFf">
 
     <q-header elevated class="bg-primary text-white">
-      <q-toolbar class="text-white bg-dark">
-        <q-toolbar-title class="text-center text-h3 q-py-lg">
-          <q-icon name="auto_stories"></q-icon>
-          <span style="vertical-align: baseline;">Library Log</span>
+      <q-toolbar class="text-white bg-dark q-py-sm">
+        <q-toolbar-title class="text-h4">
+<!--          <q-icon style="vertical-align: sub;" name="list"></q-icon>-->
+<!--          <span style="vertical-align: baseline; font-variant: small-caps;">Library Log</span>-->
+          <TypingText text="Library Log"/>
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -23,6 +24,7 @@
 <script>
 import { provide } from 'vue';
 import {Notify} from "quasar";
+import TypingText from "components/basics/text/TypingText.vue";
 
 function eid() {
   eid.count = eid.count ?? 1;
@@ -47,7 +49,7 @@ function showNotif(color, textColor, message, icon=null, multiLine=false) {
     textColor,
     icon: icon,
     message,
-    position: 'top-right',
+    position: 'bottom-right',
     // avatar,
     multiLine,
     // actions: twoActions
@@ -68,6 +70,7 @@ function randInRange(min, max) {
 }
 
 export default {
+  components: {TypingText},
   setup() {
     provide('eid', eid);
     provide('removeDuplicatesFromArray', removeDuplicatesFromArray);

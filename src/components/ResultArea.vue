@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import LibraryItem from "components/LibraryItem.vue";
 
 const emit = defineEmits(['update']);
@@ -24,7 +24,7 @@ const viewOptions = ref([
 const viewFormat = ref("list");
 const lockViewFormat = ref(false);
 
-window.addEventListener('resize', (e) => {
+function onResize(e) {
   if(innerWidth <= 600) {
     viewFormat.value = "grid";
     lockViewFormat.value = true;
@@ -33,6 +33,12 @@ window.addEventListener('resize', (e) => {
     viewFormat.value = "list";
     lockViewFormat.value = false;
   }
+}
+
+window.addEventListener('resize', onResize);
+
+onMounted(() => {
+  onResize();
 });
 </script>
 

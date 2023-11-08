@@ -99,8 +99,8 @@ function updateItem(item) {
 //! ---------------------------------------------------------------------------
 
 function saveLibrary() {
-  console.log('update save');
   setToLocalStorage('libraryCollection', libraryCollection.value);
+  showNotif('blue', 'white', 'Saved Changes!', 'published_with_changes');
 }
 
 function search(query) {

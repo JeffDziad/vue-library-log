@@ -11,9 +11,13 @@ const props = defineProps({
 });
 
 const thumbnail = computed(() => {
-  let i = props.book.volumeInfo.imageLinks.smallThumbnail;
-  if(i) return i;
-  else return "https://www.prachiindia.com/ModuleFiles/Items/Cover_image.png";
+  let i = "https://www.prachiindia.com/ModuleFiles/Items/Cover_image.png";
+  try {
+    i = props.book.volumeInfo.imageLinks.smallThumbnail;
+    return i;
+  } catch (e) {
+    return i;
+  }
 });
 
 const authors = computed(() => {
