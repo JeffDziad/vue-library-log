@@ -6,6 +6,10 @@ const props = defineProps({
     type: String,
     default: "Search",
   },
+  hint: {
+    type: String,
+    default: ""
+  },
   disabled: {
     type: Boolean,
     default: false,
@@ -29,7 +33,7 @@ async function search() {
 
 <template>
   <form>
-    <q-input :disable="disabled" filled bg-color="white" v-model="queryString" :label="label">
+    <q-input :disable="disabled" filled bg-color="white" v-model="queryString" :label="label" :hint="hint">
       <template #append>
         <q-btn @click="search" type="submit" :loading="loading" flat round color="primary" icon="search">
           <template #loading>

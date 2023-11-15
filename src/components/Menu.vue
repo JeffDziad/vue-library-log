@@ -2,6 +2,7 @@
 import SearchOptionMenu from "components/SearchOptionMenu.vue";
 import SearchInput from "components/SearchInput.vue";
 import AddItemModal from "components/modal/add_item/AddItemModal.vue";
+import {ref} from "vue";
 
 const props = defineProps({
   allCategories: {
@@ -16,6 +17,9 @@ const props = defineProps({
     type: Function,
   }
 });
+
+const searchCategories = ref([]);
+const searchProperties = ref([]);
 
 </script>
 
@@ -36,7 +40,7 @@ const props = defineProps({
       </div>
 
       <div class="col-12">
-        <SearchOptionMenu :all-categories="allCategories"></SearchOptionMenu>
+        <SearchOptionMenu :all-categories="allCategories" :search-categories="searchCategories" :search-properties="searchProperties"></SearchOptionMenu>
       </div>
 
     </div>

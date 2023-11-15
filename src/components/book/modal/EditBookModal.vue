@@ -21,11 +21,11 @@ const modal = ref(null);
 const editable = ref(dupe(props.book));
 
 function showModal() {
+  editable.value = dupe(props.book);
   modal.value.show();
 }
 
 function submit() {
-  // props.book is ready to be saved.
   emit('update', editable.value);
   modal.value.hide();
 }

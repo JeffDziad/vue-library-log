@@ -25,6 +25,7 @@
 import { provide } from 'vue';
 import {Notify} from "quasar";
 import TypingText from "components/basics/text/TypingText.vue";
+import Book from "src/models/Book";
 
 function eid() {
   eid.count = eid.count ?? 1;
@@ -69,6 +70,22 @@ function randInRange(min, max) {
   return Math.random() * (max - min) + min;
 }
 
+function camelToReadable(str) {
+  let words = [];
+  let word = "";
+  str+="X";
+  for(let i = 0; i<str.length; i++) {
+    if(str[i] === str[i].toUpperCase()) {
+      words.push(word);
+      word = "";
+    }
+    if(i === 0) {
+      word += str[i].toUpperCase();
+    } else word += str[i];
+  }
+  return words.join(' ');
+}
+
 export default {
   components: {TypingText},
   setup() {
@@ -77,6 +94,8 @@ export default {
     provide('showNotif', showNotif);
     provide('randInRange', randInRange);
     provide('dupe', dupe);
+    provide('models', {"Book": Book});
+    provide('camelToReadable', camelToReadable);
   }
 }
 </script>
