@@ -30,6 +30,10 @@ watch(properties, (n, o) => {
   //! Need to decide how to add/remove items found in 'n' from props.selectedProperties.
 });
 
+function clearSearchProperties() {
+
+}
+
 function initCheckboxes() {
   let properties = Object.keys(new models.Book());
   for(let p of properties) {
@@ -78,7 +82,7 @@ onMounted(() => {
                 <span style="font-variant-caps: small-caps;">{{label}}</span>
               </template>
             </q-option-group>
-            <q-btn flat dense><q-icon name="clear_all" size="md"/>Clear All</q-btn>
+            <q-btn flat dense @click="clearSearchProperties"><q-icon name="clear_all" size="md"/>Clear All</q-btn>
 
           </div>
           <div class="col-12 col-md-6">

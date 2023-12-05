@@ -33,7 +33,7 @@ async function search() {
 
 <template>
   <form>
-    <q-input :disable="disabled" filled bg-color="white" v-model="queryString" :label="label" :hint="hint">
+    <q-input :disable="disabled" filled bg-color="white" v-model="queryString" :label="label">
       <template #append>
         <q-btn @click="search" type="submit" :loading="loading" flat round color="primary" icon="search">
           <template #loading>
